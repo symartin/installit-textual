@@ -70,7 +70,7 @@ class OtpApp(App):
         with self._content_switcher:
             with self._tab_content:
                 for key, opt in self.opt_dict.items():
-                    self._tab_pan[key] = TabPane(key, id=key)
+                    self._tab_pan[key] = TabPane(key)
                     with self._tab_pan[key]:
                         self._opt_selection[key] = OptSelection(opt)
                         yield self._opt_selection[key]
