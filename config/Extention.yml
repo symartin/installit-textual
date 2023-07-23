@@ -1,0 +1,321 @@
+WebUI_images_browser:
+  name: WebUI images browser
+  description: >
+    This is an image browser for browsing past generated pictures, view their 
+    generated information, send that information to txt2img, img2img and others,
+    collect images to your "favorites" folder and delete the images you no 
+    longer need.
+
+    Source: https://github.com/AlUlkesh/stable-diffusion-webui-images-browser
+
+  repos:
+    - main:
+        url: "https://github.com/AlUlkesh/stable-diffusion-webui-images-browser.git"
+        path: "$EXTENSION_DIRECTORY$/stable-diffusion-webui-images-browser"
+  default: True
+
+Canvas_zoom:
+  name: Canvas zoom
+  description: >
+    Adds the ability to zoom into Inpaint, Sketch, and Inpaint Sketch.
+
+
+    ### Default hotkeys:
+
+    **Important hotkeys Zoom (Shift+wheel) , Move Canvas (F) , 
+    Full Screen (S), and Reset Zoom (R)**.
+
+    - **Shift + wheel** - Zoom canvas
+
+    - **Ctr + wheel** - Change brush size
+
+    - **Ctr-Z** - Undo last action
+
+    - **F (hold)** - Move canvas
+
+    - **S** - Fullscreen mode, zoom in on the canvas so that it fits into the screen.
+
+    - **R** - Reset Zoom.
+
+    - **Q** - Open/Close color panel
+
+    - **T** - Open color panel right above the mouse.
+
+    - **H** - Fill the entire canvas with brush color ( Works in Sketch and Inpaint Sketch )
+
+    - **A** - Toggle dropper ( Works in Sketch and Inpaint Sketch )
+
+    - **O** - Overlap all elements and back
+
+    - **C** - Toggle mask transparency mode ( Works only in Inpaint )
+
+    In transparency mode, you can paint but the effect will
+    not be what you expect, this mode is useful to see how the mask
+    fits on the picture.""
+
+  repos:
+    - main:
+        url: "https://github.com/richrobber2/canvas-zoom.git"
+        path: "$EXTENSION_DIRECTORY$/canvas-zoom"
+  default: True
+
+Aspect_ratio_helper:
+  name: Aspect ratio helper
+  description: >
+    Simple extension to easily maintain aspect ratio while changing dimensions.
+
+    ### Features:
+
+    - JavaScript aspect ratio controls
+
+    - Adds a dropdown of configurable aspect ratios, to which the dimensions will auto-scale
+
+    - When selected, you will only be able to modify the higher dimension
+
+    - The smaller or equivalent dimension will scale accordingly
+
+    - If "Lock/🔒" is selected, the aspect ratio of the current dimensions will be kept
+
+    - If "Image/🖼️" is selected, the aspect ratio of the current image will be kept (img2img only)
+
+    - If you click the "Swap/⇅" button, the current dimensions will swap
+
+    - Configurable aspect ratios will also flip, reducing the need for duplication of config
+
+
+    Source: https://github.com/thomasasfk/sd-webui-aspect-ratio-helper
+
+  repos:
+    - main:
+        url: "https://github.com/thomasasfk/sd-webui-aspect-ratio-helper.git"
+        path: "$EXTENSION_DIRECTORY$/sd-webui-aspect-ratio-helper"
+  default: True
+
+multi_subject_render:
+  name: Multi subject render
+  description: >
+    Generate multiple complex subjects all at once! First it 
+    creates your background image, then your foreground subjects, then does 
+    a depth analysis on them, cut their backgrounds, paste them onto your 
+    background and then does an img2img for a smooth blend! 
+
+
+    Source: https://github.com/Extraltodeus/multi-subject-render
+
+  repos:
+    - main:
+        url: "https://github.com/Extraltodeus/multi-subject-render.git"
+        path: "$EXTENSION_DIRECTORY$/multi-subject-render"
+  default: True
+
+MiDaS:
+  name: MiDaS
+  description: >
+    Compute depth from a single image 
+
+    Source: https://github.com/isl-org/MiDaS
+
+  repos:
+    - main:
+        url: "https://github.com/isl-org/MiDaS.git"
+        path: "$EXTENSION_DIRECTORY$/midas"
+  default: True
+
+auto_sd_paint_ext:
+  name: Auto SD Paint (Krita)
+  description: >
+    Extension for AUTOMATIC1111's webUI with Krita Plugin 
+
+    - Optimized workflow (txt2img, img2img, inpaint, upscale) & UI design.
+
+    - Only drawing studio plugin that exposes the Script API.
+
+
+    Source: https://github.com/Interpause/auto-sd-paint-ext
+
+  repos:
+    - main:
+        url: "https://github.com/Interpause/auto-sd-paint-ext.git"
+        path: "$EXTENSION_DIRECTORY$/auto-sd-paint-ext"
+  default: True
+
+sd_dynamic_thresholding:
+  name: SD Dynamic Thresholding
+  description: >
+    Extension for the AUTOMATIC1111 Stable Diffusion WebUI that enables a way
+    to use higher CFG Scales without color issues. This works by clamping
+    latents between steps. 
+
+
+    Source: https://github.com/mcmonkeyprojects/sd-dynamic-thresholding
+
+  repos:
+    - main:
+        url: "https://github.com/mcmonkeyprojects/sd-dynamic-thresholding.git"
+        path: "$EXTENSION_DIRECTORY$/sd-dynamic-thresholding"
+  default: True
+
+
+embedding_inspector:
+  name: Embedding Inspector
+  description: >
+    With this extension you can inspect internal/loaded embeddings and find 
+    out which embeddings are similar, and you can mix them to create new
+    embeddings.
+
+
+    Source: https://github.com/tkalayci71/embedding-inspector
+
+  repos:
+    - main:
+        url: "https://github.com/tkalayci71/embedding-inspector.git"
+        path: "$EXTENSION_DIRECTORY$/embedding-inspector"
+  default: True
+
+
+prompt_fusion_extension:
+  name: Prompt fusion extension
+  description: >
+    Check the wiki pages https://github.com/ljleb/fusion/wiki for the 
+    extension documentation.
+
+
+    Prompt Fusion is an auto1111 webui extension that adds more possibilities to
+    the native prompt syntax. Among other additions, it allows to interpolate
+    between the embeddings of different prompts, continuously
+
+
+    The prompt interpolation feature is similar to Prompt Travel, which allows
+    to create videos of images generated by navigating the latent space 
+    iteratively. Unlike Prompt Travel however, instead of generating multiple 
+    images, Prompt Fusion allows you to travel during the sampling process of
+    a single image. Also, instead of interpolating the latent space, it uses
+    the embedding space to determine intermediate embeddings.
+
+
+    Prompt interpolation is also similar to Prompt Blending. The main difference
+    is that this extension calculates a new embedding for every step, as
+    opposed to calculating it once and using that same one embedding for
+    all the steps.
+
+
+    The attention interpolation feature is similar to Shift Attention, which 
+    allows to generate multiple images with slight variations in the attention
+    given to certain parts of the prompt. Unlike Shift Attention, instead of
+    generating multiple images, Prompt Fusion allows to shift the attention
+    of certain parts of a prompt during the sampling process of a single image.
+
+
+    ### 1. Influencing the beginning of the sampling process
+
+    Interpolate linearly (by default) from `lion` (step 0) to `bird` (step 8) 
+    to `girl` (step 11), and stay at `girl` for the rest of the sampling steps:
+
+    ```
+    [lion:bird:girl: , 7, 10]
+    ```
+
+    ### 2. Influencing the middle of the sampling process
+
+    Interpolate using a bezier curve from `fireball monster` (step 0) to 
+    `dragon monster` (step 12, because 30 steps * 0.4 = step 12), while using
+    `seawater monster` as an intermediate control point to steer the curve
+    away during interpolation and to get creative results:
+
+    ```
+    [fireball:seawater:dragon: , .1, .4:bezier] monster
+    ```
+
+    ### Features
+
+
+    - Prompt interpolation using a curve function 
+    https://github.com/ljleb/prompt-fusion-extension/wiki/Prompt-Interpolation
+
+    - Attention interpolation aware of contextual prompt editing 
+    https://github.com/ljleb/prompt-fusion-extension/wiki/Attention-Interpolation
+
+    - Complete backwards compatibility with prompt syntax from 
+    https://github.com/AUTOMATIC1111/stable-diffusion-webui
+
+    - Prompt variables and functions 
+    https://github.com/ljleb/prompt-fusion-extension/wiki/Prompt-Variables
+
+
+    Source: https://github.com/ljleb/prompt-fusion-extension
+
+  repos:
+    - main:
+        url: "https://github.com/ljleb/prompt-fusion-extension.git"
+        path: "$EXTENSION_DIRECTORY$/prompt-fusion-extension"
+  default: True
+
+
+inpaint_anything:
+  name: Inpaint Anything
+  description: >
+    Inpaint Anything extension performs stable diffusion inpainting on a browser
+    UI using any mask selected from the output of Segment Anything.
+
+    Using Segment Anything enables users to specify masks by simply pointing
+    to the desired areas, instead of manually filling them in. This can increase
+    the efficiency and accuracy of the mask creation process, leading to 
+    potentially higher-quality inpainting results while saving time and effort.
+
+
+    ### Usage
+
+    * Drag and drop your image onto the input image area.
+
+      * Outpainting can be achieved by the `Padding options`, configuring the 
+      scale and balance, and then clicking on the `Run Padding` button.
+
+      * The `Anime Style` checkbox enhances segmentation mask detection, 
+      particularly in anime style images, at the expense of a slight reduction 
+      in mask quality.
+
+    * Click on the `Run Segment Anything` button.
+
+    * Use sketching to point the area you want to inpaint. You can undo
+     and adjust the pen size.
+
+      * Hover over either the SAM image or the mask image and press the `S`
+       key for Fullscreen mode, or the `R` key to Reset zoom.
+
+    * Click on the `Create mask` button. The mask will appear in the selected 
+    mask image area.
+
+    ### Mask Adjustment
+
+    * `Expand mask region` button: Use this to slightly expand the area of the
+     mask for broader coverage.
+
+    * `Trim mask by sketch` button: Clicking this will exclude the sketched 
+    area from the mask.
+
+    ### Inpainting Tab
+
+    * Enter your desired Prompt and Negative Prompt, then choose the
+     Inpainting Model ID.
+
+    * Click on the `Run Inpainting` button (**Please note that it may take some
+     time to download the model for the first time**).
+
+      * In the Advanced options, you can adjust the Sampler, Sampling Steps,
+       Guidance Scale, and Seed.
+
+      * If you enable the `Mask area Only` option, modifications will be 
+      confined to the designated mask area only.
+
+    * Inpainting process is performed using diffusers https://github.com/huggingface/diffusers.
+    
+    * Tips: You can directly drag and drop the inpainted image into the input image field on the Web UI.
+
+
+    Source: https://github.com/Uminosachi/sd-webui-inpaint-anything
+
+  repos:
+    - main:
+        url: "https://github.com/Uminosachi/sd-webui-inpaint-anything.git"
+        path: "$EXTENSION_DIRECTORY$/sd-webui-inpaint-anything"
+  default: True
