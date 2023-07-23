@@ -219,3 +219,11 @@ class OptSelection(Widget):
     def selection(self) -> list[OptInfo]:
         """ Return the list of selected Option. """
         return self._list_wgt.selected
+
+    def select_all(self) -> None:
+        """ Select all options. """
+        self._list_wgt.select_all()
+        
+    def deselect_all(self) -> None:
+        """ Select all options. """
+        self._list_wgt.deselect_all()

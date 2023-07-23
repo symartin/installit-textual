@@ -211,13 +211,15 @@ class InstallWorker:
         self._queue.put(('done', None))
 
 
-@dataclasses.dataclass(frozen=True, eq=True)
+@dataclasses.dataclass
 class ProcessInfo:
     """ Dataclass """
     worker: InstallWorker
     process: Process
     queue: Queue
     opt: OptInfo
+    current_action:InstallAction
+    current_message:str = ""
 
 
 def piped_process_factory(opt: OptInfo) -> ProcessInfo:
@@ -234,4 +236,13 @@ def piped_process_factory(opt: OptInfo) -> ProcessInfo:
     process = Process(target=worker.run)
     process.start()
 
-    return ProcessInfo(worker, process, q, opt)
+    return ProcessInfo(
+        worker, 
+        process,
+        q, 
+        opt,
+        InstallAction(
+            name="Preparing",
+            opt_name=opt.name,
+            description="..."
+        ))

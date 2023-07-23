@@ -4,7 +4,7 @@ from textual.app import ComposeResult
 from textual.containers import Horizontal, Vertical
 from textual.widgets import Static, Label,  ProgressBar
 
-from backend.worker import InstallAction
+from backend.worker import InstallAction, ProcessInfo
 
 
 
@@ -30,7 +30,7 @@ class ProgressWidget(Static):
         
     }
     ProgressBar{
-        height: 1;
+        height: 1; 
     }
     
     #action_name{
@@ -41,6 +41,12 @@ class ProgressWidget(Static):
     #action_desc{
         content-align: center top;
         padding: 0 1 0 0
+    }
+    
+    #opt_name{
+        content-align: left top;
+        padding: 0 1 0 0;
+        width: 18%;
     }
     
     #action_msg{
@@ -59,6 +65,7 @@ class ProgressWidget(Static):
         super().__init__(name=name, id=id, classes=classes, disabled=disabled)
 
         self._action_name_lbl = Label("Preparing...", id="action_name")
+        self._opt_name_lbl = Label("Preparing...", id="opt_name")
         self._action_desc_lbl = Label("Preparing the installation...", id="action_desc")
         self._action_msg_lbl = Label(" ", id="action_msg")
         self._progress_bar = ProgressBar(
@@ -69,7 +76,8 @@ class ProgressWidget(Static):
     def set_starting(self) -> None:
         """ set the widget to a preparing state """
         self.has_progress = False
-        self._action_name_lbl.update("Preparing...")
+        self._opt_name_lbl.update("Preparing...")
+        self._action_name_lbl.update("")
         self._action_desc_lbl.update("Preparing the installation...")
         self._action_msg_lbl.update(" ")
     
@@ -83,12 +91,15 @@ class ProgressWidget(Static):
         
         
     def compose(self) -> ComposeResult:
-        with Vertical(id="vertical"):
+        with Vertical(id="vertical_main"):
             with Horizontal():
-                yield self._action_name_lbl
+                yield self._opt_name_lbl
                 yield self._progress_bar
-
-            yield self._action_desc_lbl
+                
+            with Horizontal(id="horizontal_description"):
+                yield self._action_name_lbl
+                yield self._action_desc_lbl
+            
             yield self._action_msg_lbl
 
     def set_progress(self, progress: Optional[int]) -> None:
@@ -118,15 +129,14 @@ class ProgressWidget(Static):
             self._progress_bar.update(progress=None)
             
 
-    def set_action(self, action:InstallAction) -> None:
-        """ Updates the action name and action description 
-        labels with the given values."""
+    def set_action(self, process_info:ProcessInfo) -> None:
+        """ Updates the widget with the given process_info """
+        action = process_info.current_action
         
+        self._opt_name_lbl.update("[bold blue]" + action.opt_name)
         self._action_name_lbl.update(action.name)
         self._action_desc_lbl.update(action.description)
         self.has_progress = action.has_progress
-        
-    def set_message(self, message: str) -> None:
-        """ Sets the message label str. """
-        self._action_msg_lbl.update(message)
+        if process_info.current_message != "":
+            self._action_msg_lbl.update(process_info.current_message)
         

@@ -31,6 +31,8 @@ class OtpApp(App):
 
     BINDINGS = [
         ("q", "quit", "Quit"),
+        ("a", "select_all", "Select all in tab"),
+        ("d", "deselect_all", "Deselect all in tab"),
         ("n", "next", "Next"),
     ]
 
@@ -45,12 +47,16 @@ class OtpApp(App):
         self._header = Header(id='header')
         self._footer = Footer()
         self._main = Container(id='main')
-        self._installer = InstallerWidget(id="install_pages")
-        self._opt_selection: dict[str, OptSelection] = {}
-        self._content_switcher = ContentSwitcher(
-            id="content_switcher", initial="opt_pages" )
         
-
+        self._opt_selection: dict[str, OptSelection] = {}
+        """ dictionary storing all the OptSelection widgets """
+        
+        self._tab_pan:dict[str, TabPane] = {}
+        
+        self._content_switcher = ContentSwitcher(
+            id="content_switcher", initial="optlist_page" )
+        self._tab_content = TabbedContent(id="optlist_page")
+        self._installer = InstallerWidget(id="install_pages")
 
     def _make_tab(self, opt_list: list[OptInfo]) -> SelectionList:
         """ Generate a Tab object based on a list of BaseOpt objects. """
@@ -62,18 +68,21 @@ class OtpApp(App):
         yield self._header
         yield self._footer
         with self._content_switcher:
-            with TabbedContent(id="opt_pages"):
+            with self._tab_content:
                 for key, opt in self.opt_dict.items():
-                    with TabPane(key):
+                    self._tab_pan[key] = TabPane(key, id=key)
+                    with self._tab_pan[key]:
                         self._opt_selection[key] = OptSelection(opt)
                         yield self._opt_selection[key]
 
             yield self._installer
+            
 
     async def on_mount(self) -> None:
         """ Executed when the widget is created.     
         It focus the tabs when the app starts."""
-        self.query_one("#opt_pages").focus()
+        # self._content_switcher.current = "opt_pages"
+        self.query_one("#optlist_page").focus()
 
     @work
     def action_next(self):
@@ -83,7 +92,7 @@ class OtpApp(App):
         if self._installer.is_running:
             return
         
-        elif self._content_switcher.current == "opt_pages":
+        elif self._content_switcher.current == "optlist_page":
             self._content_switcher.current = "install_pages" # type: ignore
             
             # Loop through the opt_selection items and install the selected options
@@ -96,8 +105,18 @@ class OtpApp(App):
                         time.sleep(1)
                 
         else:
-            self.query_one("#content_switcher").current = "opt_pages" # type: ignore
+            self._content_switcher.current = "optlist_page" # type: ignore
                 
+    def action_select_all(self):
+        if self._content_switcher.current == "optlist_page":
+            if (active := self._tab_content.active) != "":
+                self._opt_selection[active].select_all() 
+
+    def action_deselect_all(self):
+        if self._content_switcher.current == "optlist_page":
+            if (active := self._tab_content.active) != "":
+                self._opt_selection[active].deselect_all() 
+
 
 if __name__ == "__main__":
     app = OtpApp()
