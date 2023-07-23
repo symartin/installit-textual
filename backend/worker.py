@@ -1,5 +1,6 @@
 import dataclasses
 import os
+import sys
 import time
 import traceback
 import subprocess
@@ -171,19 +172,28 @@ class InstallWorker:
         if not self.opt_info.cmd:
             return
 
-        for cmd in self.opt_info.cmd:
+        try:
+            for cmd in self.opt_info.cmd:
 
-            self._queue.put(
-                ('action',
-                 InstallAction(
-                     name="Execute command",
-                     opt_name=self.opt_info.name,
-                     description=cmd,
-                     has_progress=False))
-            )
+                self._queue.put(
+                    ('action',
+                    InstallAction(
+                        name="Execute command",
+                        opt_name=self.opt_info.name,
+                        description=cmd,
+                        has_progress=False))
+                )
 
-            subprocess.Popen(cmd, shell=True)
-
+                proc = subprocess.Popen(cmd, shell=True, stderr=sys.stdout)
+                out, err = proc.communicate()
+                if err:
+                    self._queue.put(('message_update', err.decode("utf-8")))
+                if out:    
+                    self._queue.put(('message_update', out.decode("utf-8")))
+                    
+        except Exception as e:
+                self._queue.put(("error", traceback.format_exc()))
+                
     def run(self) -> None:
         """ start the worker."""
 
@@ -203,6 +213,7 @@ class InstallWorker:
 
 @dataclasses.dataclass(frozen=True, eq=True)
 class ProcessInfo:
+    """ Dataclass """
     worker: InstallWorker
     process: Process
     queue: Queue

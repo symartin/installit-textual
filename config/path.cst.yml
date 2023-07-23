@@ -1,5 +1,5 @@
 
-WEBUI_DIRECTORY: ./.test
+WEBUI_DIRECTORY: /workspace/stable-diffusion-webui/
 
 SD15_MODEL_DIRECTORY: $WEBUI_DIRECTORY$/models/Stable-diffusion/
 SD15_CONTROL_NET_DIRECTORY: $WEBUI_DIRECTORY$/models/ControlNet/

@@ -9,6 +9,7 @@ __all__ = ["DownloadInfo", "RepositoryInfo", "OptInfo"]
 
 @dataclasses.dataclass(frozen=True, eq=True)
 class DownloadInfo:
+    """ Info on one file to download """
     url: str
     path:str
     name: str = ""
@@ -18,6 +19,7 @@ class DownloadInfo:
 
 @dataclasses.dataclass(frozen=True, eq=True)
 class RepositoryInfo:
+    """ Info on one git repository """
     url: str
     path:str
     name: str = ""
@@ -25,11 +27,15 @@ class RepositoryInfo:
 
 @dataclasses.dataclass(frozen=True, eq=True)
 class OptInfo:
-    """ a data class to hold the base information """
+    """ A dataclass to hold all the  information in a `opt`"""
+    
     name: str
     description: str = ""
+    """ description of the option, will be interpreted as markdown """
+    
     default: bool = False
     """ if true this option is selected by default """
+    
     repos: Optional[tuple[RepositoryInfo]]= None
     files: Optional[tuple[DownloadInfo]] = None
     cmd: Optional[tuple[str]] = None

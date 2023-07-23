@@ -16,8 +16,7 @@ SCRIPT_PATH = os.path.dirname(os.path.realpath(__file__))
 
 class OtpApp(App):
     """ 
-    A simple app to chose extensions and model
-    for Automatic 1111 and install them. 
+    Application entry point, called when the application is started.
     """
 
     CSS = """
@@ -55,10 +54,11 @@ class OtpApp(App):
 
     def _make_tab(self, opt_list: list[OptInfo]) -> SelectionList:
         """ Generate a Tab object based on a list of BaseOpt objects. """
-        return SelectionList[OptInfo]((opt.name, opt, opt.default) for opt in opt_list) # type: ignore
+        return SelectionList[OptInfo](
+            (opt.name, opt, opt.default) for opt in opt_list) # type: ignore
 
     def compose(self) -> ComposeResult:
-
+        """ Yield child widgets for a container. """
         yield self._header
         yield self._footer
         with self._content_switcher:
@@ -71,28 +71,33 @@ class OtpApp(App):
             yield self._installer
 
     async def on_mount(self) -> None:
-        """Focus the tabs when the app starts."""
+        """ Executed when the widget is created.     
+        It focus the tabs when the app starts."""
         self.query_one("#opt_pages").focus()
 
     @work
     def action_next(self):
-        
+        """
+        Performs the `next` action based on the current state of the application.
+        """
         if self._installer.is_running:
             return
         
         elif self._content_switcher.current == "opt_pages":
-            
             self._content_switcher.current = "install_pages" # type: ignore
             
+            # Loop through the opt_selection items and install the selected options
             for key, w in self._opt_selection.items():
                 if len(selection := w.selection):
                     self._installer.install(key, selection)
+                    
+                    # Wait until the installer is finished
                     while self._installer.is_running:
                         time.sleep(1)
                 
         else:
             self.query_one("#content_switcher").current = "opt_pages" # type: ignore
-            
+                
 
 if __name__ == "__main__":
     app = OtpApp()

@@ -6,9 +6,24 @@ from .optclass import DownloadInfo, RepositoryInfo, OptInfo
 import yaml
 import re
 
+__all__ = ["YamlConfigLoader"]
 
 class YamlConfigLoader():
-
+    """ 
+    Loader for the yaml config file. 
+    
+    usage: opt_dict, cst_dict = YamlConfigLoader().load("SCRIPT_PATH")
+    
+    The ``opt_dict`` is a dictionary of OptInfo objects holding all the options 
+    for the user to choose.
+    
+    The ``cst_dict`` is a dictionary of constant strings. Those constants will
+    are used by the installer to replace the values in the yaml. and all the 
+    string of the yaml file will be recursively replaced by the values of 
+    the constants. It allow to use constants in constant declaration. 
+    To be treated as a replaceable constant, the string must be 
+    between dollar signs `$`.
+    """
     def __init__(self,):
 
         self._yaml_dict: dict[str, Any] = {}
@@ -19,13 +34,27 @@ class YamlConfigLoader():
 
     @property
     def opt_dict(self):
+        """
+        Returns a copy of the opt dictionary.
+        """
         return self._opt_dict.copy()
 
     @property
     def cst_dict(self):
+        """
+        Returns a copy of the constant dictionary.
+        """
         return self._cst_dict.copy()
 
-    def load(self, config_directory):
+    def load(
+        self, 
+        config_directory
+        ) -> tuple[dict[str, list[OptInfo]], dict[str, str]]:
+        """
+        Load the YAML files from the given directory and return 
+        the opt and the constant dictionary.
+        
+        """
         self._yaml_dict = self._load_yml_files(config_directory)       
 
         for key, sub_dict in self._yaml_dict.items():
@@ -35,8 +64,9 @@ class YamlConfigLoader():
                 self._opt_dict[key] = sub_dict
 
         self._recursive_cst()
-
-        # Create a regular expression  from the dictionary keys
+        """Recursively process the cst dictionary."""
+        
+        # Create a regular expression from the dictionary keys
         # https://stackoverflow.com/questions/15175142/how-can-i-do-multiple-substitutions-using-regex
         self._cst_regex = re.compile(
             "(%s)" % "|".join(map(re.escape, self._cst_dict.keys())))
@@ -44,11 +74,12 @@ class YamlConfigLoader():
         self._cst_replace_in_opt_dict()
 
         for file, sub_dict in self._opt_dict.items():
-            self._opt_dict[file] = [self.optinfo_from_dict(v) for v in sub_dict.values()]
+            self._opt_dict[file] = [self._optinfo_from_dict(v) for v in sub_dict.values()]
 
         return self._opt_dict, self._cst_dict
 
-    def optinfo_from_dict(self, source: dict) -> OptInfo:
+    def _optinfo_from_dict(self, source: dict) -> OptInfo:
+        """ Create an OptInfo object from a yaml dictionary."""
 
         repos_list = []
         file_list = []
@@ -73,7 +104,8 @@ class YamlConfigLoader():
         )
 
     def _recursive_cst(self):
-
+        """  recursively replaced by the values of the constants. 
+        It allow to use constants in constant declaration """
         for k, v in self._cst_dict.items():
             if not isinstance(v, str):
                 self._cst_dict[k] = str(v)
@@ -139,17 +171,3 @@ class YamlConfigLoader():
 
     def values(self):
         return self._opt_dict.values()
-
-
-def read_yaml_files(folder_path):
-    yaml_dict = {}
-
-    for file_name in os.listdir(folder_path):
-        if file_name.endswith(".yml") or file_name.endswith(".yaml"):
-            file_path = os.path.join(folder_path, file_name)
-
-            with open(file_path, "r") as file:
-                yaml_data = yaml.safe_load(file)
-                yaml_dict[file_name] = yaml_data
-
-    return yaml_dict
