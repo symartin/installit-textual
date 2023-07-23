@@ -1,18 +1,32 @@
 import os
 import time
+from typing import Optional
 from textual import work
 from textual.app import App, ComposeResult
 from textual.containers import Container
 from textual.widgets import (
     Footer, Header, SelectionList,
     TabbedContent, TabPane,
-    ContentSwitcher)
+    ContentSwitcher, Tabs,
+    Tab)
 
 from backend import  OptInfo
 from backend import YamlConfigLoader
 from backend.widget import SelectionList, OptSelection, InstallerWidget
 
 SCRIPT_PATH = os.path.dirname(os.path.realpath(__file__))
+
+
+_CSS_FORBIDDEN = ['!', '"', '#', '$', '%', '&', ',' '(', ')', '*', '+', 
+                  ',', '-', '.', '/', ':', ';', '<', '=', '>', '?', '@',
+                  '[', '\\', ']', '^', ',' '{', '|', '}', '~', " ", "\t"]
+
+
+def _escape(txt:str)->str:
+    """ Escapes special characters in a given string."""
+    for c in _CSS_FORBIDDEN:
+        txt = txt.replace(c, '_')
+    return txt
 
 class OtpApp(App):
     """ 
@@ -31,8 +45,10 @@ class OtpApp(App):
 
     BINDINGS = [
         ("q", "quit", "Quit"),
-        ("a", "select_all", "Select all in tab"),
-        ("d", "deselect_all", "Deselect all in tab"),
+        ("shift+a", "select_all", "Select all"),
+        ("a", "select_all_in_tab", "Select all in tab"),
+        ("shift+d", "deselect_all", "Deselect all"),
+        ("d", "deselect_all_in_tab", "Deselect all in tab"),
         ("n", "next", "Next"),
     ]
 
@@ -107,15 +123,35 @@ class OtpApp(App):
         else:
             self._content_switcher.current = "optlist_page" # type: ignore
                 
-    def action_select_all(self):
+    
+    def _get_active_tab(self)-> Optional[Tab]:
+        """  Retrieve the active tab. """
         if self._content_switcher.current == "optlist_page":
             if (active := self._tab_content.active) != "":
-                self._opt_selection[active].select_all() 
+                return self._tab_content.get_child_by_type(Tabs).active_tab
+            
+    def action_select_all_in_tab(self):
+        """ Selects all elements in the active tab's selection. """
+        if (active_tab := self._get_active_tab()):
+                    self._opt_selection[active_tab.label_text].select_all()
 
-    def action_deselect_all(self):
+          
+    def action_select_all(self):
+        """ Selects all elements """
         if self._content_switcher.current == "optlist_page":
-            if (active := self._tab_content.active) != "":
-                self._opt_selection[active].deselect_all() 
+            for selection in self._opt_selection.values():               
+                    selection.select_all()
+                     
+    def action_deselect_all(self):
+        """ Selects all elements in the active tab's selection. """
+        if self._content_switcher.current == "optlist_page":
+            for selection in self._opt_selection.values():               
+                    selection.deselect_all()
+                                     
+    def action_deselect_all_in_tab(self):
+        """ Deselects all options in the currently active tab. """
+        if (active_tab := self._get_active_tab()):
+                    self._opt_selection[active_tab.label_text].deselect_all()
 
 
 if __name__ == "__main__":
