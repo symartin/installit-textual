@@ -173,6 +173,3 @@ class InstallerWidget(Widget):
     def is_running(self) -> bool:
         return self._is_running
 
-    def _update_progress(self) -> None:
-        if self._is_running:
-            pass

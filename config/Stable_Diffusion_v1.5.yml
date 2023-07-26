@@ -2,13 +2,29 @@ base_model_Stable_diffusion:
   name: Stable Diffusion V1.5
   description: Main V1.5 Stable Diffusion checkpoint
   files:
-    - main:
-        url: "https://huggingface.co/camenduru/sd15/resolve/main/v1-5-pruned-emaonly.ckpt"
-        path: "$SD15_MODEL_DIRECTORY$/sd-v1-5.ckpt"
     - inpainting:
         url: "https://huggingface.co/camenduru/i15/resolve/main/sd-v1-5-inpainting.ckpt"
         path: "$SD15_MODEL_DIRECTORY$/sd-v1-5-inpainting.ckpt"
   default: True
+
+RPG_V5:
+  name: RPG V5
+  Description:
+    This model card focuses on Role Playing Game portrait similar to 
+    Baldur's Gate, Dungeon and Dragon, Icewindale, and more modern style of RPG
+     character.
+
+
+    documentation:https://huggingface.co/Anashel/rpg/resolve/main/RPG-V4-Model-Download/RPG-Guide-v4.pdf
+    source:https://civitai.com/models/1116?modelVersionId=124626
+
+  files:
+      - RPG_V5_main:
+          url: "https://civitai.com/api/download/models/124626?type=Model&format=SafeTensor&size=pruned&fp=fp16"
+          path: "$SD15_CONTROL_NET_DIRECTORY$/RPG-V5.safetensors"
+      - RPG_V4_inpaint:
+          url: "https://civitai.com/api/download/models/96255?type=Model&format=SafeTensor&size=full&fp=fp16"
+          path: "$SD15_CONTROL_NET_DIRECTORY$/RPG-V4-inpaint.safetensors"
 
 Control_net:
   name: ControlNet
@@ -37,7 +53,8 @@ Control_net:
 
     - control_sd15_seg.pth model to control SD using semantic segmentation. 
     The protocol is ADE20k.
-
+    
+    https://huggingface.co/lllyasviel/ControlNet-v1-1/tree/main
 
     Source:https://huggingface.co/lllyasviel/ControlNet
   files:
@@ -59,9 +76,12 @@ Control_net:
     - control_seg:
         url: "https://huggingface.co/webui/ControlNet-modules-safetensors/resolve/main/control_seg-fp16.safetensors"
         path: $SD15_CONTROL_NET_DIRECTORY$/control_seg-fp16.safetensors
-    - control_seg:
-        url: "https://huggingface.co/webui/ControlNet-modules-safetensors/resolve/main/control_seg-fp16.safetensors"
-        path: "$SD15_CONTROL_NET_DIRECTORY$/control_seg-fp16.safetensors"
+    - control_inpaint:
+        url: "https://huggingface.co/lllyasviel/ControlNet-v1-1/resolve/main/control_v11p_sd15_inpaint.pth"
+        path: "$SD15_CONTROL_NET_DIRECTORY$/resolve/main/control_v11p_sd15_inpaint.pth"
+    - control_inpaint:
+        url: "https://huggingface.co/lllyasviel/ControlNet-v1-1/resolve/main/control_v11f1e_sd15_tile.pth"
+        path: "$SD15_CONTROL_NET_DIRECTORY$/control_v11f1e_sd15_tile.pth"
   default: True
 
 T2I_Adapter:
