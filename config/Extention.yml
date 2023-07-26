@@ -319,3 +319,14 @@ inpaint_anything:
         url: "https://github.com/Uminosachi/sd-webui-inpaint-anything.git"
         path: "$EXTENSION_DIRECTORY$/sd-webui-inpaint-anything"
   default: True
+
+
+
+negative_prompt_styles:
+  name: Negative prompt styles
+  description: Main V1.5 Stable Diffusion checkpoint
+  files:
+    - inpainting:
+        url: "https://www.patreon.com/file?h=79649068&i=14984787"
+        path: "$WEBUI_DIRECTORY$/style.csv"
+  default: True

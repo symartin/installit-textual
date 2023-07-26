@@ -21,10 +21,10 @@ RPG_V5:
   files:
       - RPG_V5_main:
           url: "https://civitai.com/api/download/models/124626?type=Model&format=SafeTensor&size=pruned&fp=fp16"
-          path: "$SD15_CONTROL_NET_DIRECTORY$/RPG-V5.safetensors"
+          path: "$SD15_MODEL_DIRECTORY$/RPG-V5.safetensors"
       - RPG_V4_inpaint:
           url: "https://civitai.com/api/download/models/96255?type=Model&format=SafeTensor&size=full&fp=fp16"
-          path: "$SD15_CONTROL_NET_DIRECTORY$/RPG-V4-inpaint.safetensors"
+          path: "$SD15_MODEL_DIRECTORY$/RPG-V4-inpaint.safetensors"
 
 Control_net:
   name: ControlNet
@@ -79,9 +79,10 @@ Control_net:
     - control_inpaint:
         url: "https://huggingface.co/lllyasviel/ControlNet-v1-1/resolve/main/control_v11p_sd15_inpaint.pth"
         path: "$SD15_CONTROL_NET_DIRECTORY$/resolve/main/control_v11p_sd15_inpaint.pth"
-    - control_inpaint:
+    - control_tile:
         url: "https://huggingface.co/lllyasviel/ControlNet-v1-1/resolve/main/control_v11f1e_sd15_tile.pth"
         path: "$SD15_CONTROL_NET_DIRECTORY$/control_v11f1e_sd15_tile.pth"
+
   default: True
 
 T2I_Adapter:
