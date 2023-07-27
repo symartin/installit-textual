@@ -142,14 +142,14 @@ class InstallWorker:
             try:
                 response = requests.get(file.url, stream=True)
                 response.raise_for_status()
-                total_size = int(response.headers['Content-Length'])
+                total_size = int(response.headers.get('Content-Length', -1))
                 
                 Path(os.path.dirname(file.path)).mkdir(parents=True, exist_ok=True)
                 
                 # create the path tree if not exists
                 with open(file.path, 'wb') as file:
                     downloaded_size = 0
-                    for data in response.iter_content(total_size//50):
+                    for data in response.iter_content(max(1024*1024,total_size//50)):
                         file.write(data)
                         downloaded_size += len(data)
                         progress = (downloaded_size / total_size) * 100

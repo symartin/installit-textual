@@ -141,7 +141,6 @@ class InstallerWidget(Widget):
 
                 elif cmd == 'action':
                     # type: obj:InstallAction
-                    
                     self._process_pool[i].current_action = obj
                     self._text_log.write(f"{obj.opt_name}: {obj.name}: {obj.description}")
 
@@ -157,10 +156,14 @@ class InstallerWidget(Widget):
         # Now we can update the progress bar.
         # if it is donne in real time, the indices 
         # can be shifted by the pop done when cmd is 'done'
-        for i, prc in enumerate(self._process_pool):
-             self._progress_widgets[i].set_action(prc)           
-                
+        for i in range(MAX_WORKERS):
+            if i < len(self._process_pool):
+                self._progress_widgets[i].set_action(self._process_pool[i])           
+            else:
+                self._progress_widgets[i].set_finished()
 
+        
+        
     def install(self, group_name: str, opt_list: list[OptInfo]) -> None:
         self._group_name = group_name
         self._process_pool: list[ProcessInfo] = []

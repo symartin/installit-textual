@@ -111,6 +111,7 @@ class ProgressWidget(Static):
         """
         if progress is not None:
             self._progress_bar.update(progress=progress)
+            self._has_progress = True
         else:
             self._has_progress = False
 
@@ -123,9 +124,7 @@ class ProgressWidget(Static):
     def has_progress(self, has_progress: bool) -> None:
         self._has_progress = has_progress
         self._progress_bar.show_percentage = has_progress
-        if has_progress:
-            self._progress_bar.update(progress=0)
-        else:
+        if not has_progress:
             self._progress_bar.update(progress=None)
             
 
