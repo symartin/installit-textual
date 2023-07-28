@@ -11,6 +11,9 @@ base_model_Stable_diffusion:
     - SDXL_V1.0_refiner:
         url: "https://huggingface.co/stabilityai/stable-diffusion-xl-refiner-1.0/resolve/main/sd_xl_refiner_1.0.safetensors"
         path: "$SDXL_MODEL_DIRECTORY$/SDXL_V1.0_refiner.safetensors"
+    - SDXL_V1.0_vae:
+        url: "https://huggingface.co/stabilityai/stable-diffusion-xl-refiner-1.0/resolve/main/sd_xl_refiner_1.0.safetensors"
+        path: "$SDXL_MODEL_DIRECTORY$/SDXL_V1.0.vae.safetensors"
   default: True
 
 Anime_Art_Diffusion_XL:

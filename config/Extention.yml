@@ -320,6 +320,48 @@ inpaint_anything:
         path: "$EXTENSION_DIRECTORY$/sd-webui-inpaint-anything"
   default: True
 
+ultimate-upscale:
+  name: Ultimate upscale
+  description: >
+    Now you have the opportunity to use a large denoise (0.3-0.5) and not spawn
+    many artifacts. Works on any video card, since you can use a 512x512 tile
+    size and the image will converge.
+    
+
+    Source: https://github.com/Coyote-A/ultimate-upscale-for-automatic1111
+
+  repos:
+    - main:
+        url: "https://github.com/Coyote-A/ultimate-upscale-for-automatic1111.git"
+        path: "$EXTENSION_DIRECTORY$/ultimate-upscale-for-automatic1111"
+  default: True
+
+multidiffusion_upscaler:
+  name: multidiffusion upscaler
+  description: >
+    The extension enables large image drawing & upscaling with limited VRAM via the following techniques:
+
+    Two SOTA diffusion tiling algorithms: Mixture of Diffusers and MultiDiffusion
+    My original Tiled VAE algorithm.
+    My original TIled Noise Inversion for better upscaling.
+
+    #### Features
+
+    - StableSR support
+    - Tiled Noise Inversion
+    - Tiled VAE
+    - Regional Prompt Control
+    - Img2img upscale
+    - Ultra-Large image generation
+
+    Source: https://github.com/pkuliyi2015/multidiffusion-upscaler-for-automatic1111
+
+  repos:
+    - main:
+        url: "https://github.com/pkuliyi2015/multidiffusion-upscaler-for-automatic1111.git"
+        path: "$EXTENSION_DIRECTORY$/multidiffusion-upscaler-for-automatic1111"
+  default: True
+
 
 
 negative_prompt_styles:
@@ -330,3 +372,5 @@ negative_prompt_styles:
         url: "https://www.patreon.com/file?h=79649068&i=14984787"
         path: "$WEBUI_DIRECTORY$/style.csv"
   default: True
+
+
