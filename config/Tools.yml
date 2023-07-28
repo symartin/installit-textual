@@ -1,0 +1,13 @@
+top:
+  name: nvtop & htop
+  description: >
+    Resource monitor that shows usage and stats for processor, memory, disks,
+    network and processes.
+
+    Nvtop stands for Neat Videocard TOP, a (h)top like task monitor for AMD, 
+    Intel and NVIDIA GPUs. It can handle multiple GPUs and print information 
+    about them in a htop familiar way.
+  cmd:
+    - "apt-get install -y nvtop"
+    - "apt-get install -y htop"
+  default: True
