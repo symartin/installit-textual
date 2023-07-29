@@ -3,7 +3,7 @@ base_model_Stable_diffusion:
   description: Main Stable Diffusion XL V1.0 checkpoint
   files:
     - main:
-        url: "https://huggingface.co/stabilityai/stable-diffusion-xl-refiner-1.0/resolve/main/unet/diffusion_pytorch_model.safetensors"
+        url: "https://huggingface.co/stabilityai/stable-diffusion-xl-base-1.0/resolve/main/sd_xl_base_1.0.safetensors"
         path: "$SDXL_MODEL_DIRECTORY$/SDXL_V1.0.safetensors"
     - SDXL_V1.0_offset:
         url: "https://huggingface.co/stabilityai/stable-diffusion-xl-base-1.0/resolve/main/sd_xl_offset_example-lora_1.0.safetensors"
@@ -11,9 +11,9 @@ base_model_Stable_diffusion:
     - SDXL_V1.0_refiner:
         url: "https://huggingface.co/stabilityai/stable-diffusion-xl-refiner-1.0/resolve/main/sd_xl_refiner_1.0.safetensors"
         path: "$SDXL_MODEL_DIRECTORY$/SDXL_V1.0_refiner.safetensors"
-    - SDXL_V1.0_vae:
-        url: "https://huggingface.co/stabilityai/stable-diffusion-xl-refiner-1.0/resolve/main/sd_xl_refiner_1.0.safetensors"
-        path: "$SDXL_MODEL_DIRECTORY$/SDXL_V1.0.vae.safetensors"
+    # - SDXL_V1.0_vae:
+    #     url: "https://huggingface.co/stabilityai/stable-diffusion-xl-refiner-1.0/resolve/main/sd_xl_refiner_1.0.safetensors"
+    #     path: "$SDXL_MODEL_DIRECTORY$/SDXL_V1.0.vae.safetensors"
   default: True
 
 Anime_Art_Diffusion_XL:
