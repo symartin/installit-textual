@@ -16,5 +16,5 @@ kill_launcher:
   description: >
     kill the automatic relancher of automatic 1111
   cmd:
-    - "pkill -9 -f ".*webui.sh|.*launch.*.py"
+    - "pkill -9 -f \".*webui.sh|.*launch.*.py\""
   default: True
