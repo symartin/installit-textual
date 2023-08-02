@@ -1,5 +1,5 @@
 top:
-  name: nvtop, htop & htop
+  name: nvtop, htop & vtop
   description: >
     Resource monitor that shows usage and stats for processor, memory, disks,
     network and processes.
@@ -8,7 +8,7 @@ top:
     Intel and NVIDIA GPUs. It can handle multiple GPUs and print information 
     about them in a htop familiar way.
   cmd:
-    - "apt-get install -y nvtop htop htop"
+    - "apt-get install -y nvtop htop vtop"
   default: True
 
 kill_launcher:

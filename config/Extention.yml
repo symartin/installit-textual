@@ -155,7 +155,6 @@ sd_dynamic_thresholding:
         path: "$EXTENSION_DIRECTORY$/sd-dynamic-thresholding"
   default: True
 
-
 embedding_inspector:
   name: Embedding Inspector
   description: >
@@ -172,10 +171,10 @@ embedding_inspector:
         path: "$EXTENSION_DIRECTORY$/embedding-inspector"
   default: True
 
-
 prompt_fusion_extension:
   name: Prompt fusion extension
   description: >
+    ** Not compatible with SDXL **
     Check the wiki pages https://github.com/ljleb/fusion/wiki for the 
     extension documentation.
 
@@ -248,8 +247,7 @@ prompt_fusion_extension:
     - main:
         url: "https://github.com/ljleb/prompt-fusion-extension.git"
         path: "$EXTENSION_DIRECTORY$/prompt-fusion-extension"
-  default: True
-
+  default: False
 
 inpaint_anything:
   name: Inpaint Anything
@@ -362,15 +360,44 @@ multidiffusion_upscaler:
         path: "$EXTENSION_DIRECTORY$/multidiffusion-upscaler-for-automatic1111"
   default: True
 
-
-
 negative_prompt_styles:
   name: Negative prompt styles
   description: Main V1.5 Stable Diffusion checkpoint
   files:
     - inpainting:
         url: "https://www.patreon.com/file?h=79649068&i=14984787"
-        path: "$WEBUI_DIRECTORY$/style.csv"
+        path: "$WEBUI_DIRECTORY$/styles.csv"
   default: True
 
+Photopia:
+  name: Photopea Stable Diffusion
+  description: >
+    Photopea is essentially Photoshop in a browser. This is a simple extension 
+    to add a Photopea tab to AUTOMATIC1111 Stable Diffusion WebUI.
+    
+    In the tab, you will have an embedded Photopea editor and a few buttons to
+    send the image to different WebUI sections, and also buttons to send 
+    generated content to the embeded Photopea.
+
+    Source: https://github.com/yankooliveira/sd-webui-photopea-embed
+
+  repos:
+    - main:
+        url: "https://github.com/yankooliveira/sd-webui-photopea-embed.git"
+        path: "$EXTENSION_DIRECTORY$/sd-webui-photopea-embed"
+  default: True
+
+FaceSwap:
+  name: FaceSwap
+  description: >
+    The Fast and Simple "roop-based" FaceSwap Extension with a lot of 
+    improvements 
+
+    Source: https://github.com/Gourieff/sd-webui-roop-nsfw.git
+
+  repos:
+    - main:
+        url: "https://github.com/Gourieff/sd-webui-roop-nsfw.git"
+        path: "$EXTENSION_DIRECTORY$/sd-webui-roop"
+  default: True
 
