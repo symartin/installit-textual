@@ -361,12 +361,28 @@ multidiffusion_upscaler:
   default: True
 
 negative_prompt_styles:
-  name: Negative prompt styles
-  description: Main V1.5 Stable Diffusion checkpoint
+  name: Sebastian Kamph Styles
+  description: Sebastian Kamph Styles
   files:
-    - inpainting:
+    - style:
         url: "https://www.patreon.com/file?h=79649068&i=14984787"
-        path: "$WEBUI_DIRECTORY$/styles.csv"
+        path: "$WEBUI_DIRECTORY$/styles_sks.csv"
+  cmd:
+    - "cat $WEBUI_DIRECTORY$/styles_sks.csv >> $WEBUI_DIRECTORY$/styles.csv"
+  default: True
+
+negative_prompt_styles:
+  name: Douleb
+  description: >
+    file repository hosting a `styles.csv` file with 850+ styles for Stable 
+    Diffusion XL, These diverse styles can enhance your project's output.
+
+  files:
+    - main:
+        url: "https://github.com/Douleb/SDXL-A1111-Styles/blob/main/All%20in%20one%20Styles%20(pro%20%2B%20experiemental%20GPT4)%20850%2B/styles.csv"
+        path: "$WEBUI_DIRECTORY$/styles_douleb.csv"
+  cmd:
+    - "cat $WEBUI_DIRECTORY$/styles_douleb.csv >> $WEBUI_DIRECTORY$/styles.csv"
   default: True
 
 Photopia:
