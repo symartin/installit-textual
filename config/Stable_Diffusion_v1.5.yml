@@ -9,7 +9,7 @@ base_model_Stable_diffusion:
 
 RPG_V5:
   name: RPG V5
-  Description:
+  Description: >
     This model card focuses on Role Playing Game portrait similar to 
     Baldur's Gate, Dungeon and Dragon, Icewindale, and more modern style of RPG
      character.
@@ -296,13 +296,41 @@ Vivid_Watercolors:
     [dripping:0.5], Trending on artstation by [artist]
 
 
-    Source: https://civitai.com/models/4998/vivid-watercolors>
+    Source: https://civitai.com/models/4998/vivid-watercolors
 
   files:
     - main:
         url: "https://civitai.com/api/download/models/5762?type=Model&format=SafeTensor&size=full&fp=fp16"
         path: "$SD15_MODEL_DIRECTORY$/Vivid_Watercolors.safetensors"
   default: False
+
+
+DreamShaper:
+  name: DreamShaper
+  description: >
+
+    CLIP skip 2 on some pics, the model works with that too. 
+
+
+    DreamShaper started as a model to have an alternative to MidJourney in 
+    the open source world. I didn't like how MJ was handled back when I 
+    started and how closed it was and still is, as well as the lack of freedom
+    it gives to users compared to SD. Look at all the tools we have now from 
+    Is to LoRA, from ControlNet to Latent Couple. We can do anything. 
+    The purpose of DreamShaper has always been to make "a better Stable 
+    Diffusion", a model capable of doing everything on its own, to weave dreams.
+
+    Source: https:https://civitai.com/models/4384
+
+  files:
+    - main:
+        url: "https://civitai.com/api/download/models/128713?type=Model&format=SafeTensor&size=pruned&fp=fp16"
+        path: "$SD15_MODEL_DIRECTORY$/DreamShaper.safetensors"
+    - inpaint:
+        url: "https://civitai.com/api/download/models/131004?type=Model&format=SafeTensor&size=pruned&fp=fp16"
+        path: "$SD15_MODEL_DIRECTORY$/DreamShaper.safetensors-inpaint"
+  default: False
+
 
 CharTurner:
   name: CharTurner

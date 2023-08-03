@@ -368,7 +368,7 @@ negative_prompt_styles:
         url: "https://www.patreon.com/file?h=79649068&i=14984787"
         path: "$WEBUI_DIRECTORY$/styles_sks.csv"
   cmd:
-    - "cat $WEBUI_DIRECTORY$/styles_sks.csv >> $WEBUI_DIRECTORY$/styles.csv"
+    - "sed '1d' $WEBUI_DIRECTORY$/styles_sks.csv >> $WEBUI_DIRECTORY$/styles.csv"
   default: True
 
 negative_prompt_styles:
@@ -379,10 +379,10 @@ negative_prompt_styles:
 
   files:
     - main:
-        url: "https://github.com/Douleb/SDXL-A1111-Styles/blob/main/All%20in%20one%20Styles%20(pro%20%2B%20experiemental%20GPT4)%20850%2B/styles.csv"
+        url: "https://raw.githubusercontent.com/Douleb/SDXL-A1111-Styles/main/All%20in%20one%20Styles%20(pro%20%2B%20experiemental%20GPT4)%20850%2B/styles.csv"
         path: "$WEBUI_DIRECTORY$/styles_douleb.csv"
   cmd:
-    - "cat $WEBUI_DIRECTORY$/styles_douleb.csv >> $WEBUI_DIRECTORY$/styles.csv"
+    - "sed '1d' $WEBUI_DIRECTORY$/styles_douleb.csv >> $WEBUI_DIRECTORY$/styles.csv"
   default: True
 
 Photopia:
@@ -417,3 +417,22 @@ FaceSwap:
         path: "$EXTENSION_DIRECTORY$/sd-webui-roop"
   default: True
 
+openpose-editor:
+  name: openpose editor
+  description: >
+    The user can directly access the editor at localhost:7860/openpose_editor_index
+    or https://huchenlei.github.io/sd-webui-openpose-editor/ if desired, but the
+    main entry point is invoking the editor in the ControlNet extension. In 
+    ControlNet extension, select any openpose preprocessor, and hit the run 
+    preprocessor button. A preprocessor result preview will be genereated. 
+    Click Edit button at the bottom right corner of the generated image will 
+    bring up the openpose editor in a modal. After the edit, clicking the 
+    Send pose to ControlNet button will send back the pose to ControlNet.
+
+    Source: https://github.com/huchenlei/sd-webui-openpose-editor
+
+  repos:
+    - main:
+        url: "https://github.com/huchenlei/sd-webui-openpose-editor.git"
+        path: "$EXTENSION_DIRECTORY$/sd-webui-openpose-editor"
+  default: True
