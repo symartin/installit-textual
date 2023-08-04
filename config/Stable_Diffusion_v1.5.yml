@@ -60,22 +60,31 @@ Control_net:
   files:
     - control_depth:
         url: "https://huggingface.co/webui/ControlNet-modules-safetensors/resolve/main/control_depth-fp16.safetensors"
-        path: "$SD15_CONTROL_NET_DIRECTORY$/control_depth-fp16.safetensors"
+        path: "$SD15_CONTROL_NET_DIRECTORY$/control_sd15_depth.safetensors"
+    - control_canny:
+        url: "https://huggingface.co/webui/ControlNet-modules-safetensors/resolve/main/control_canny-fp16.safetensors"
+        path: "$SD15_CONTROL_NET_DIRECTORY$/control_sd15_canny.safetensors"
+    - control_mlsd:
+        url: "https://huggingface.co/webui/ControlNet-modules-safetensors/resolve/main/control_mlsd-fp16.safetensors"
+        path: "$SD15_CONTROL_NET_DIRECTORY$/control_sd15_mlsd.safetensors"
     - control_hed:
         url: "https://huggingface.co/webui/ControlNet-modules-safetensors/resolve/main/control_hed-fp16.safetensors"
-        path: "$SD15_CONTROL_NET_DIRECTORY$/control_hed-fp16.safetensors"
+        path: "$SD15_CONTROL_NET_DIRECTORY$/control_sd15_hed.safetensors"
+    - control_hed:
+        url: "https://huggingface.co/webui/ControlNet-modules-safetensors/resolve/main/control_normal-fp16.safetensors"
+        path: "$SD15_CONTROL_NET_DIRECTORY$/control_sd15_normal.safetensors"
     - control_normal:
         url: "https://huggingface.co/webui/ControlNet-modules-safetensors/resolve/main/control_normal-fp16.safetensors"
-        path: "$SD15_CONTROL_NET_DIRECTORY$/control_normal-fp16.safetensors"
+        path: "$SD15_CONTROL_NET_DIRECTORY$/control_sd15_normal.safetensors"
     - control_openpose:
         url: "https://huggingface.co/webui/ControlNet-modules-safetensors/resolve/main/control_openpose-fp16.safetensors"
-        path: "$SD15_CONTROL_NET_DIRECTORY$/control_openpose-fp16.safetensors"
+        path: "$SD15_CONTROL_NET_DIRECTORY$/control_sd15_openpose.safetensors"
     - control_scribble:
         url: "https://huggingface.co/webui/ControlNet-modules-safetensors/resolve/main/control_scribble-fp16.safetensors"
-        path: "$SD15_CONTROL_NET_DIRECTORY$/control_scribble-fp16.safetensors"
+        path: "$SD15_CONTROL_NET_DIRECTORY$/control_sd15_scribble.safetensors"
     - control_seg:
         url: "https://huggingface.co/webui/ControlNet-modules-safetensors/resolve/main/control_seg-fp16.safetensors"
-        path: $SD15_CONTROL_NET_DIRECTORY$/control_seg-fp16.safetensors
+        path: $SD15_CONTROL_NET_DIRECTORY$/control_sd15_seg.safetensors
     - control_inpaint:
         url: "https://huggingface.co/lllyasviel/ControlNet-v1-1/resolve/main/control_v11p_sd15_inpaint.pth"
         path: "$SD15_CONTROL_NET_DIRECTORY$/resolve/main/control_v11p_sd15_inpaint.pth"
@@ -102,28 +111,28 @@ T2I_Adapter:
   files:
     - t2iadapter_canny:
         url: "https://huggingface.co/webui/ControlNet-modules-safetensors/resolve/main/t2iadapter_canny-fp16.safetensors"
-        path: "$SD15_CONTROL_NET_DIRECTORY$/t2iadapter_canny-fp16.safetensors"
+        path: "$SD15_CONTROL_NET_DIRECTORY$/t2iadapter_canny_sd15v2.safetensors"
     - t2iadapter_color:
         url: "https://huggingface.co/webui/ControlNet-modules-safetensors/resolve/main/t2iadapter_color-fp16.safetensors"
-        path: "$SD15_CONTROL_NET_DIRECTORY$/t2iadapter_color-fp16.safetensors"
+        path: "$SD15_CONTROL_NET_DIRECTORY$/t2iadapter_color_sd14v1.safetensors"
     - t2iadapter_depth:
         url: "https://huggingface.co/webui/ControlNet-modules-safetensors/resolve/main/t2iadapter_depth-fp16.safetensors"
-        path: "$SD15_CONTROL_NET_DIRECTORY$/t2iadapter_depth-fp16.safetensors"
+        path: "$SD15_CONTROL_NET_DIRECTORY$/t2iadapter_depth_sd15v2.safetensors"
     - t2iadapter_keypose:
         url: "https://huggingface.co/webui/ControlNet-modules-safetensors/resolve/main/t2iadapter_keypose-fp16.safetensors"
         path: "$SD15_CONTROL_NET_DIRECTORY$/t2iadapter_keypose-fp16.safetensors"
     - t2iadapter_openpose:
         url: "https://huggingface.co/webui/ControlNet-modules-safetensors/resolve/main/t2iadapter_openpose-fp16.safetensors"
-        path: "$SD15_CONTROL_NET_DIRECTORY$/t2iadapter_openpose-fp16.safetensors   "
+        path: "$SD15_CONTROL_NET_DIRECTORY$/t2iadapter_openpose_sd14v1.safetensors   "
     - t2iadapter_seg:
         url: "https://huggingface.co/webui/ControlNet-modules-safetensors/resolve/main/t2iadapter_seg-fp16.safetensors"
-        path: "$SD15_CONTROL_NET_DIRECTORY$/t2iadapter_seg-fp16.safetensors"
+        path: "$SD15_CONTROL_NET_DIRECTORY$/t2iadapter_seg_sd14v1.safetensors"
     - t2iadapter_style:
         url: "https://huggingface.co/webui/ControlNet-modules-safetensors/resolve/main/t2iadapter_style-fp16.safetensors"
-        path: "$SD15_CONTROL_NET_DIRECTORY$/t2iadapter_style-fp16.safetensors"
+        path: "$SD15_CONTROL_NET_DIRECTORY$/t2iadapter_style_sd14v1.safetensors"
     - t2iadapter_sketch:
-        url: "https://huggingface.co/webui/ControlNet-modules-safetensors/resolve/main/t2iadapter_sketch-fp16.safetensors"
-        path: "$SD15_CONTROL_NET_DIRECTORY$/t2iadapter_sketch-fp16.safetensors"
+        url: "https://huggingface.co/TencentARC/T2I-Adapter/resolve/main/models/t2iadapter_sketch_sd15v2.pth"
+        path: "$SD15_CONTROL_NET_DIRECTORY$/t2iadapter_sketch_sd15v2.safetensors"
   default: True
   
 Deliberate_v2:
