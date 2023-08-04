@@ -371,7 +371,7 @@ negative_prompt_styles:
     - "sed '1d' $WEBUI_DIRECTORY$/styles_sks.csv >> $WEBUI_DIRECTORY$/styles.csv"
   default: True
 
-negative_prompt_styles:
+prompt_styles:
   name: Douleb
   description: >
     file repository hosting a `styles.csv` file with 850+ styles for Stable 

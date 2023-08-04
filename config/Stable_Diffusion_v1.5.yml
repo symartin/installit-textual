@@ -70,9 +70,6 @@ Control_net:
     - control_hed:
         url: "https://huggingface.co/webui/ControlNet-modules-safetensors/resolve/main/control_hed-fp16.safetensors"
         path: "$SD15_CONTROL_NET_DIRECTORY$/control_sd15_hed.safetensors"
-    - control_hed:
-        url: "https://huggingface.co/webui/ControlNet-modules-safetensors/resolve/main/control_normal-fp16.safetensors"
-        path: "$SD15_CONTROL_NET_DIRECTORY$/control_sd15_normal.safetensors"
     - control_normal:
         url: "https://huggingface.co/webui/ControlNet-modules-safetensors/resolve/main/control_normal-fp16.safetensors"
         path: "$SD15_CONTROL_NET_DIRECTORY$/control_sd15_normal.safetensors"
