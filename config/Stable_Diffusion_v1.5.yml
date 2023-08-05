@@ -83,8 +83,8 @@ Control_net:
         url: "https://huggingface.co/webui/ControlNet-modules-safetensors/resolve/main/control_seg-fp16.safetensors"
         path: $SD15_CONTROL_NET_DIRECTORY$/control_sd15_seg.safetensors
     - control_inpaint:
-        url: "https://huggingface.co/lllyasviel/ControlNet-v1-1/resolve/main/control_v11p_sd15_inpaint.pth"
-        path: "$SD15_CONTROL_NET_DIRECTORY$/resolve/main/control_v11p_sd15_inpaint.pth"
+        url: "https://huggingface.co/lllyasviel/control_v11p_sd15_inpaint/resolve/main/diffusion_pytorch_model.fp16.safetensors"
+        path: "$SD15_CONTROL_NET_DIRECTORY$/control_v11p_sd15_inpaint.safetensors"
     - control_tile:
         url: "https://huggingface.co/lllyasviel/ControlNet-v1-1/resolve/main/control_v11f1e_sd15_tile.pth"
         path: "$SD15_CONTROL_NET_DIRECTORY$/control_v11f1e_sd15_tile.pth"

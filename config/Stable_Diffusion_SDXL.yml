@@ -32,6 +32,9 @@ Anime_Art_Diffusion_XL:
     words like 8k and high resolution because otherwise it tends to go too
     much low detail. Look at the examples.
 
+
+    source:https://civitai.com/models/117259/anime-art-diffusion-xl
+
   files:
     - main:
         url: "https://civitai.com/api/download/models/127055?type=Model&format=SafeTensor&size=full&fp=fp16"
@@ -60,6 +63,9 @@ DreamShaper:
         - 75% better dragons 🐉
 
         - Better NSFW
+
+
+    source:https://civitai.com/models/112902/dreamshaper-xl10
 
   files:
     - main:
@@ -111,7 +117,6 @@ Copax_cute:
         url: "https://civitai.com/api/download/models/129450?type=Model&format=SafeTensor&size=pruned&fp=fp16"
         path: "$SDXL_MODEL_DIRECTORY$/Copax_Cute.safetensors"
   default: False
-
 
 Wizard:
   name: Wizard

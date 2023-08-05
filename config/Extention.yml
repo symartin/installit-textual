@@ -401,7 +401,7 @@ Photopia:
     - main:
         url: "https://github.com/yankooliveira/sd-webui-photopea-embed.git"
         path: "$EXTENSION_DIRECTORY$/sd-webui-photopea-embed"
-  default: True
+  default: False
 
 FaceSwap:
   name: FaceSwap
