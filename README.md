@@ -1,6 +1,11 @@
 # InstallIt textual
 
-A simple customizable installer based on the Textual library.
+[![GitHub license](https://img.shields.io/github/license/symartin/installit-textual.svg)](https://raw.githubusercontent.com/symartin/installit-textual/main/LICENSE)
+
+## Description
+![GitHub license](https://img.shields.io/badge/Made_with_♥️_in_Python-3776AB?style=for-the-badge&logo=python&logoColor=white)
+
+A simple customizable installer based on the *Textual* library.
 
 My first goal was to test the new python framework [Textual](https://github.com/Textualize/textual).
 So I made this installer that take a bunch of YAML file an generate a nice 
